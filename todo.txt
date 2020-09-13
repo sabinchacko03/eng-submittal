@@ -1,0 +1,12 @@
+---- Admin Page ------
+
+1. Validation of project, contractors, departments, etc while adding - make unambigous- No duplicates.
+2. Option to customise all details like Add, Edit, Delete - projects, deptmnt, etc.
+3. better div outlines and all...
+4. create a superuser and link to add users with diff type.
+
+
+----
+-scrolling
+-billing could be created in the same month
+-billing amount validation - remove

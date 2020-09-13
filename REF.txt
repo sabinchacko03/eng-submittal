@@ -1,0 +1,17 @@
+--> Alert, validations, checking projected Vs actual (Billing)
+--> Inspection table should have a check to the Milestone table if it is linked.
+--> Validate the Amount field for numbers, in Billing (otherwise error on calculating the %)
+--> master toggle issue while adding milestone - name getting validated
+
+--> remove first animation
+
+https://youtu.be/HXLE6zgIWDc
+https://stackoverflow.com/questions/15164599/loading-a-view-after-an-ajax-call-codeigniter
+
+----VUE----
+https://makitweb.com/load-more-records-on-button-click-with-vue-js-and-php/
+
+
+
+---- Portfolio On Git ----
+https://mudroljub.github.io/

@@ -10833,12 +10833,12 @@ a, button, .btn {
     .app-main .app-main__inner {
         padding: 10px 10px 0;
         flex: 1;
-        background-color: beige;
+        background-color:  #F6E5E2;
         min-height:530px;
     }
 
 .app-theme-white.app-container {
-    background: beige;
+    background:  #F6E5E2;
 }
 
 .app-theme-white .app-sidebar {
@@ -10850,7 +10850,7 @@ a, button, .btn {
 }
 
 .app-theme-white .app-footer .app-footer__inner, .app-theme-white .app-header {
-    background: beige;
+    background:  #F6E5E2;
 }
 
 .app-theme-white.fixed-header .app-header__logo {

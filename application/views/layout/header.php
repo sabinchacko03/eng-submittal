@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta http-equiv="Content-Language" content="en">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title>Al Shirawi</title>
+        <title>Al Shirawi | Engineering</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
         <meta name="description" content="MEP Dashboard">
         <meta name="msapplication-tap-highlight" content="no">
@@ -29,6 +29,7 @@
         <script type="text/javascript" src="<?= base_url() ?>public/assets/scripts/billing.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>public/assets/scripts/inspection.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>public/assets/scripts/issue.js"></script>
+        <script type="text/javascript" src="<?= base_url() ?>public/assets/scripts/material.js"></script>
         
         <style>
             /*.login-bg{background: url(<?= base_url() . '/public/images/dubai1.jpg' ?>);background-size: cover; background-attachment: fixed; background-repeat: no-repeat; background-position: center;}*/
@@ -66,6 +67,7 @@
             var MILESTONE = "<?= base_url() . 'milestone'; ?>";
             var PROJECTS = "<?= base_url() . 'projects'; ?>";
             var BILLING = "<?= base_url() . 'billing'; ?>";
+            var MATERIAL = "<?= base_url() . 'material'; ?>";
         </script>
         
     </head>

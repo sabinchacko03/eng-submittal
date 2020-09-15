@@ -33,7 +33,7 @@
         
         <style>
             /*.login-bg{background: url(<?= base_url() . '/public/images/dubai1.jpg' ?>);background-size: cover; background-attachment: fixed; background-repeat: no-repeat; background-position: center;}*/
-            .login-bg{background: url('https://drive.google.com/uc?export=view&id=1Wv2p_lXSlZmzpFRXlDFzLIszWRncL4Dp');background-size: cover; background-attachment: fixed; background-repeat: no-repeat; background-position: center;}
+            .login-bg{background: url('https://drive.google.com/uc?export=view&id=1U1a5AvzIIdienhM3Rv_cxFzZ3L7fU1xh');background-size: cover; background-attachment: fixed; background-repeat: no-repeat; background-position: center;}
         </style>
         <script>
             $(document).ready(function () {

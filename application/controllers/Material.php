@@ -48,7 +48,8 @@ class Material extends CI_Controller {
 
     public function AJAXgetMaterialProject(){
         $project = $this->input->post('project');
-        $data['material'] = $this->Material_model->getAllMaterials($project);
+        $department = $this->input->post('department');
+        $data['material'] = $this->Material_model->getAllMaterials($project, $department);
         echo($this->load->view('material/material_project', $data, TRUE));
     }
 
@@ -67,14 +68,37 @@ class Material extends CI_Controller {
 
     public function AJAXAddMaterialLog(){
         $project = $this->input->post('project');
+        $department = $this->input->post('department');
         $res = $this->Material_model->insertMaterialLog();
-        $data['material'] = $this->Material_model->getAllMaterials($project);
+        $data['material'] = $this->Material_model->getAllMaterials($project, $department);
         echo($this->load->view('material/material_project', $data, TRUE));
     }
 
     public function AJAXGetMaterialSubmittalLog() {
         $material = $this->input->post('id');
+        $data['approved'] = $this->Material_model->isApproved($material);
         $data['material_log'] = $this->Material_model->getAllMaterialLog($material);
         echo($this->load->view('material/material_submittal_log', $data, TRUE));
+    }
+    
+    public function AJAXGetMaterialLogDetails(){
+        $log = $this->input->post('log');
+        $data['material'] = $this->Material_model->getMaterialLogDetails($log);
+        $data['status'] = $this->Material_model->getMaterialStatus();
+        echo($this->load->view('material/material_submittal_update', $data, TRUE));
+    }
+    
+    public function AJAXupdateMaterialLog(){
+        $project = $this->input->post('project');
+        $department = $this->input->post('department');
+        $res = $this->Material_model->updateMaterialLog();        
+        $data['material'] = $this->Material_model->getAllMaterials($project, $department);
+        echo($this->load->view('material/material_project', $data, TRUE));
+    }
+    
+    public function AJAXgetDeptSummary(){
+        $project = $this->input->post('project');
+        $data['material'] = $this->Material_model->getMaterialSummaryDept($project);
+        echo($this->load->view('material/material_summary_dept', $data, TRUE));
     }
 }

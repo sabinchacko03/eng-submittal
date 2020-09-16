@@ -176,6 +176,8 @@ class Admin_model extends CI_Model {
         $this->db->truncate('inspections');
         $this->db->truncate('inspection_history');
         $this->db->truncate('project_milestones');
+        $this->db->truncate('material');
+        $this->db->truncate('material_submittal_log');
         return true;
     }
 

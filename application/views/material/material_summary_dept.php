@@ -1,7 +1,12 @@
+<?php
+foreach ($material->result_array() as $row) {
+    $projectName = $row['project_name'];
+}
+?>
 <div class="col-lg-12">
     <div class="main-card mb-3 card">
         <div class="card-header">
-            <i class="header-icon lnr-graduation-hat icon-gradient bg-happy-itmeo"> </i>Overall Material Submittal
+            <i class="header-icon lnr-graduation-hat icon-gradient bg-happy-itmeo"> </i><?= $projectName ?>
             <div class="btn-actions-pane-right">
                 <?php if ($this->edit_role) { ?>
                     <button class="btn btn-square btn-primary btn-sm btn-add-material-form"><i class="fa fa-plus-circle"></i> New Material</button>
@@ -13,7 +18,7 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Project</th>
+                    <th>Department</th>
                     <th>Total</th>
                     <th>Submitted</th>
                     <th>A</th>  
@@ -29,7 +34,7 @@
                     <tr>
                         <!--<th scope="row"><?= $id++; ?></th>-->
                         <td><?= $row['project_id']; ?></td>
-                        <td><?= $row['project_name']; ?></td>
+                        <td><?= $row['department_name']; ?></td>
                         <td><?= $row['total']; ?></td>  
                         <td><?= $row['submitted']; ?></td>
                         <td><?= $row['approved']; ?></td>                                          
@@ -38,7 +43,7 @@
                         <td><?= $row['d']; ?></td>                                          
                         <td><?= $row['ur']; ?></td>                                          
                         <td>
-                            <a href='#' class="viewMaterialDetails" data-project="<?= $row['project'] ?>">
+                            <a href='#' class="viewMaterialDetailsDept" data-project="<?= $row['project'] ?>" data-department="<?= $row['department'] ?>">
                                 View
                             </a>
                         </td>
@@ -46,6 +51,9 @@
                 <?php } ?>
             </tbody>
         </table>
+        </div>
+        <div class="d-block text-right card-footer">
+            <button class="mr-2 btn btn-link btn-sm btn-cancel">Back</button>
         </div>
     </div>
 </div>

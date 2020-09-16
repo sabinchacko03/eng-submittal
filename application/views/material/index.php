@@ -44,8 +44,12 @@
                                     <th>ID</th>
                                     <th>Project</th>
                                     <th>Total</th>
-                                    <th>Approved</th>
                                     <th>Submitted</th>
+                                    <th>A</th>  
+                                    <th>B</th>
+                                    <th>C</th>
+                                    <th>D</th>
+                                    <th>UR</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -56,8 +60,12 @@
                                         <td><?= $row['project_id']; ?></td>
                                         <td><?= $row['project_name']; ?></td>
                                         <td><?= $row['total']; ?></td>  
-                                        <td><?= $row['approved']; ?></td>  
                                         <td><?= $row['submitted']; ?></td>
+                                        <td><?= $row['approved']; ?></td>                                          
+                                        <td><?= $row['b']; ?></td>                                          
+                                        <td><?= $row['c']; ?></td>                                          
+                                        <td><?= $row['d']; ?></td>                                          
+                                        <td><?= $row['ur']; ?></td>                                          
                                         <td>
                                             <a href='#' class="viewMaterialDetails" data-project="<?= $row['project'] ?>">
                                                 View

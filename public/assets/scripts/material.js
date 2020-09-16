@@ -35,7 +35,17 @@ $(function () {
     $(document).on('click', ".viewMaterialDetails", function () {
         event.preventDefault();
         var project = $(this).data('project');
-        $.post(MATERIAL + '/AJAXgetMaterialProject', {'project': project}, function (result) {
+        $.post(MATERIAL + '/AJAXgetDeptSummary', {'project': project}, function (result) {
+            $("#materialDetailsTable").html(result);
+            $('.table').DataTable();
+        });
+    });
+    
+    $(document).on('click', ".viewMaterialDetailsDept", function () {
+        event.preventDefault();
+        var project = $(this).data('project');
+        var department = $(this).data('department');
+        $.post(MATERIAL + '/AJAXgetMaterialProject', {'project': project, 'department' : department}, function (result) {
             $("#materialDetailsTable").html(result);
             $('.table').DataTable();
         });
@@ -71,6 +81,38 @@ $(function () {
         event.preventDefault();
         var data = $(this).serialize();
         $.post(MATERIAL + '/AJAXAddMaterialLog', data, function (result) {
+            $(".materialLogForm").trigger("reset");
+            $(".ui-theme-settings").toggleClass("settings-open", 1000);
+            $("#materialDetailsTable").html(result);
+            $('.table').DataTable();
+            $(".table").trigger("update");
+        });
+    });
+    
+    $(document).on('click', ".editMaterialLog", function () {
+        event.preventDefault();
+        var log = $(this).data('material-log');
+        $.post(MATERIAL + '/AJAXGetMaterialLogDetails', {'log' : log}, function (result) {
+            $("#sidePanelContent").html(result);
+            $("#actual_submittal_date, #returned_date").datepicker({
+                dateFormat: "yy-mm-dd",
+                changeMonth: true,
+                changeYear: true,
+            });
+            $('#returned_date_icon').click(function () {
+                $('#returned_date').datepicker('show');
+            });
+            $('#actual_submittal_date_icon').click(function () {
+                $('#actual_submittal_date').datepicker('show');
+            });
+            $(".ui-theme-settings").toggleClass("settings-open", 1000);
+        });
+    });
+    
+    $(document).on('submit', ".materialLogUpdateForm", function(){
+        event.preventDefault();
+        var data = $(this).serialize();
+        $.post(MATERIAL + '/AJAXupdateMaterialLog', data, function (result) {
             $(".materialLogForm").trigger("reset");
             $(".ui-theme-settings").toggleClass("settings-open", 1000);
             $("#materialDetailsTable").html(result);

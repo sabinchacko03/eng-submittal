@@ -17,26 +17,14 @@
                             <input type="text" value="<?= $row->name ?>" readonly="true" class="form-control"/>
                             <input type="hidden" name="material" id="material" value="<?= $row->id ?>" readonly="true" required/>
                             <input type="hidden" name="project" id="project" value="<?= $row->project ?>" readonly="true" required/>
+                            <input type="hidden" name="department" id="department" value="<?= $row->department ?>" readonly="true" required/>
                         <?php } ?>
                     </div>
                     <div class="col-md-12">                    
                         <label for="project" class="col-form-label">Revision</label>
-                        <input type="number" name="revision" id="revision" value="<?= count($materialLog->result()) + 1 ?>" class="form-control" required readonly/>
-                    </div>
-                    <div class="col-md-12">                    
-                        <label for="project" class="col-form-label">Actual Submittal Date</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend datepicker-trigger">
-                                <div class="input-group-text">
-                                    <a id="actual_submittal_date_icon" class="font-icon-md">
-                                        <i class="fa fa-calendar-alt"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <input type="text" name="actual_submittal_date" id="actual_submittal_date" required autocomplete="off"/>
-                        </div>
-                    </div>
-                    <div class="col-md-12">                    
+                        <input type="number" name="revision" id="revision" value="<?= count($materialLog->result()) ?>" class="form-control" required readonly/>
+                    </div>                    
+<!--                    <div class="col-md-12">                    
                         <label for="project" class="col-form-label">Returned Date</label>
                         <div class="input-group">
                             <div class="input-group-prepend datepicker-trigger">
@@ -48,16 +36,33 @@
                             </div>
                             <input type="text" name="returned_date" id="returned_date" required autocomplete="off"/>
                         </div>
-                    </div>
+                    </div>-->
                     <div class="col-md-12">                    
                         <label class="col-form-label">Status</label>
-                        <select name="status" id="status" class="form-control" required>
+                        <select class="form-control" required readonly disabled>
                             <option value="">--- Select Status ---</option>
                             <?php foreach ($status->result() as $row) { ?>
-                                <option value="<?= $row->id ?>"><?= $row->name . ' - '. $row->description ?></option>
+                                <option value="<?= $row->id ?>" <?= $row->name == 'UR' ? 'selected' : ''; ?>><?= $row->name . ' - '. $row->description ?></option>
+                                <?php if($row->name == 'UR'){
+                                    $status = $row->id;
+                                }?>
                             <?php } ?>
                         </select>
-                    </div>                   
+                        <input type="hidden" name="status" value="<?= $status?>" />
+                    </div> 
+                    <div class="col-md-12">                    
+                        <label for="project" class="col-form-label">Actual Submittal Date</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend datepicker-trigger">
+                                <div class="input-group-text">
+                                    <a id="actual_submittal_date_icon" class="font-icon-md">
+                                        <i class="fa fa-calendar-alt"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <input type="text" name="actual_submittal_date" value="<?= date('Y-m-d') ?>" id="actual_submittal_date" required autocomplete="off"/>
+                        </div>
+                    </div>
                 </div>     
             </div>
             <div class="d-block text-right card-footer">

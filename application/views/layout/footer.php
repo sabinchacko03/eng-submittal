@@ -20,58 +20,9 @@
         var url = window.location.href;
         $('.vertical-nav-menu li ul li a[href="' + url + '"]').addClass('mm-active');
         $('.vertical-nav-menu li ul li a[href="' + url + '"]').closest('li').addClass('mm-active');
-        $('.table').DataTable();
-
-        var table = $('.table').DataTable();
-
-        $(document).on('click', '.table tbody td.details-control', function () {
-            var tr = $(this).closest('tr');
-            var row = table.row(tr);
-            var id = $(this).data('id');
-
-            if (row.child.isShown()) {
-                row.child.hide();
-                tr.removeClass('shown');
-            } else {
-                row.child(format(row.data(), id)).show();
-                tr.addClass('shown');
-            }
-        });
-
-        function format(rowData, id) {
-            var div = $('<div/>')
-                    .addClass('loading')
-                    .text('Loading...');
-
-            $.ajax({
-                url: INSPECTIONS + '/AJAXGetInspectionHistory',
-                method: 'POST',
-                data: {
-                    'id': id
-                },
-                success: function (json) {
-                    div
-                            .html(json)
-                            .removeClass('loading');
-                }
-            });
-
-            return div;
-        }
+        $('.table').DataTable();       
     });
     
-//    $(document).on('click', function (e) {
-//        if ($(e.target).hasClass("new") || $(e.target).hasClass("dow") || $(e.target).hasClass("datepicker-switch") || $(e.target).hasClass("prev")
-//                || $(e.target).hasClass("next") || $(e.target).hasClass("year") || $(e.target).hasClass("year active") || $(e.target).hasClass("today")
-//                || $(e.target).hasClass("month") || $(e.target).hasClass("month active") || $(e.target).hasClass("datepicker")
-//                || $(e.target).hasClass("day") || $(e.target).hasClass("paginate_button")) {
-//            return;
-//        }
-//        if (!$.contains($('#ui-theme-settings').get(0), e.target)) {
-//            $('#ui-theme-settings').removeAttr('class');
-//            $('#ui-theme-settings').attr('class', 'ui-theme-settings');
-//        }
-//    });
 </script>
 </body>
 </html>

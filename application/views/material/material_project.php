@@ -20,10 +20,12 @@ foreach ($material->result_array() as $row) {
                     <tr>
                         <th>ID</th>
                         <th></th>
-                        <th>Project</th>
+                        <!--<th>Project</th>-->
                         <th>Department</th>
                         <th>Material</th>
                         <th>Description</th>
+                        <th>Proposed Make</th>
+                        <th>Status</th>
                         <th>Planned Date</th>
                         <?php if ($this->edit_role || $this->delete_role) { ?>
                             <th>Action</th>
@@ -36,10 +38,12 @@ foreach ($material->result_array() as $row) {
                             <!--<th scope="row"><?= $id++; ?></th>-->
                             <td><?= $row['project_id']; ?></td>
                             <td class="details-control" data-id="<?= $row['id'] ?>"></td>
-                            <td><?= $row['project_name']; ?></td>
+                            <!--<td><?= $row['project_name']; ?></td>-->
                             <td><?= $row['department']; ?></td>  
                             <td><?= $row['name']; ?></td>  
                             <td><?= $row['description']; ?></td>
+                            <td><?= $row['proposed_make']; ?></td>
+                            <td><?= $row['status']; ?></td>
                             <td><?= $row['planned_date']; ?></td> 
                             <?php if ($this->edit_role || $this->delete_role) { ?>
                                 <td>

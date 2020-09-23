@@ -1,14 +1,14 @@
 <div class="col-md-12">
     <div class="main-card mb-3 card">
         <div class="card-header">
-            <i class="header-icon lnr-graduation-hat icon-gradient bg-happy-itmeo"> </i>Add Material     
+            <i class="header-icon lnr-graduation-hat icon-gradient bg-happy-itmeo"> </i>Add Shop Drawing     
             <div class="btn-actions-pane-right">
                 <button type="button" class="mb-2 mr-2 btn btn-dark btn-sm sidePanelClose">
                     Close
                 </button>
             </div>
         </div>
-        <form method="post" class="addMaterialForm" action="">
+        <form method="post" class="addShopDrawingForm" action="">
             <div class="card-body">            
                 <div class="form-group row">                                        
                     <div class="col-md-12">                    

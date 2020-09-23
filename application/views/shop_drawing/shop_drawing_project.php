@@ -10,7 +10,7 @@ foreach ($material->result_array() as $row) {
             <i class="header-icon lnr-graduation-hat icon-gradient bg-happy-itmeo"> </i><?= $projectName ?>
             <div class="btn-actions-pane-right">
                 <?php if ($this->edit_role) { ?>
-                    <button class="btn btn-square btn-primary btn-sm btn-add-material-form"><i class="fa fa-plus-circle"></i> New Material</button>
+                    <button class="btn btn-square btn-primary btn-sm btn-add-shop-drawing-form"><i class="fa fa-plus-circle"></i> New Shop Drawing</button>
                 <?php } ?>
             </div>
         </div>
@@ -22,7 +22,7 @@ foreach ($material->result_array() as $row) {
                         <th></th>
                         <!--<th>Project</th>-->
                         <th>Department</th>
-                        <th>Material</th>
+                        <th>Shop Drawing</th>
                         <th>Description</th>
                         <th>Proposed Make</th>
                         <th>Status</th>
@@ -48,10 +48,10 @@ foreach ($material->result_array() as $row) {
                             <?php if ($this->edit_role || $this->delete_role) { ?>
                                 <td>
                                     <?php if ($this->edit_role && !$row['is_approved']) { ?>
-                                        <a href='#' class="enterMaterialLog" data-material="<?= $row['id'] ?>">
+                                        <a href='#' class="enterShopDrawinglLog" data-material="<?= $row['id'] ?>">
                                             <i class="fa fa-plus-square" title="Add" aria-hidden="true"></i>
                                         </a>
-                                        <a href='#' class="editMaterial" data-material="<?= $row['id'] ?>">
+                                        <a href='#' class="editShopDrawing" data-material="<?= $row['id'] ?>">
                                             <i class="fa fa-pencil-square-o" title="Edit" aria-hidden="true"></i>
                                         </a>
                                     <?php } ?>
@@ -97,7 +97,7 @@ foreach ($material->result_array() as $row) {
                     .text('Loading...');
 
             $.ajax({
-                url: MATERIAL + '/AJAXGetMaterialSubmittalLog',
+                url: SHOPDRAWING + '/AJAXGetShopDrawingLog',
                 method: 'POST',
                 data: {
                     'id': id

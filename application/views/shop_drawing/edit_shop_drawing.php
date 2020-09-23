@@ -1,46 +1,36 @@
 <div class="col-md-12">
     <div class="main-card mb-3 card">
         <div class="card-header">
-            <i class="header-icon lnr-graduation-hat icon-gradient bg-happy-itmeo"> </i>Add Material     
+            <i class="header-icon lnr-graduation-hat icon-gradient bg-happy-itmeo"> </i>Edit Shop Drawing     
             <div class="btn-actions-pane-right">
                 <button type="button" class="mb-2 mr-2 btn btn-dark btn-sm sidePanelClose">
                     Close
                 </button>
             </div>
         </div>
-        <form method="post" class="addMaterialForm" action="">
+        <form method="post" class="editShopDrawingForm" action="">
+            <?php foreach($material->result() as $row){ ?>
             <div class="card-body">            
                 <div class="form-group row">                                        
                     <div class="col-md-12">                    
                         <label for="project" class="col-form-label">Project</label>
-                        <select name="project" id="project" class="form-control text-center" required>
-                            <option value="">--- Select Project ---</option>
-                            <?php foreach ($projects->result() as $project) { ?>
-                                <option value="<?= $project->id ?>"><?= $project->name ?></option>
-                            <?php } ?>
-                        </select>
+                        <input type="text" class="form-control" readonly value="<?= $row->project_name ?>" />
+                        <input type="hidden" name="id" value="<?= $row->id ?>" />
+                        <input type="hidden" name="project" value="<?= $row->project ?>" />
+                        <input type="hidden" name="department" value="<?= $row->department ?>" />
                     </div>
                     <div class="col-md-12">                    
                         <label for="department" class="col-form-label">Department</label>
-                        <select name="department" id="department" class="form-control text-center" required>
-                            <option value="">--- Select Department ---</option>
-                            <?php foreach ($departments->result() as $department) { ?>
-                                <option value="<?= $department->id ?>"><?= $department->name ?></option>
-                            <?php } ?>
-                        </select>
+                        <input type="text" class="form-control" readonly value="<?= $row->department_name ?>" />
                     </div>
                     <div class="col-md-12">                    
                         <label for="name" class="col-form-label">Submittal No.</label>
-                        <input type="text" name="name" id="name" class="form-control" required autocomplete="off"/>     
+                        <input type="text" class="form-control" readonly value="<?= $row->name ?>" />    
                         <span style="color: red;" id="material_msg"></span>                       
-                    </div>
-                    <div class="col-md-12">                    
-                        <label for="description" class="col-form-label">Description</label>
-                        <textarea name="description" class="form-control" cols="2"> </textarea>
-                    </div>      
+                    </div>   
                     <div class="col-md-12">                    
                         <label for="description" class="col-form-label">Proposed Make</label>
-                        <input type="text" name="proposed_make" id="proposed_make" class="form-control" autocomplete="off"/> 
+                        <input type="text" name="proposed_make" id="proposed_make" class="form-control" autocomplete="off" value="<?= $row->proposed_make ?>"/> 
                     </div> 
                     <div class="col-md-12">                    
                         <label class="col-form-label">Planned Date</label>
@@ -61,6 +51,7 @@
                 <input type="button" value="Cancel" class="mr-2 btn btn-link btn-sm sidebar-cancel" />
                 <button type="submit" class="btn-shadow-primary btn btn-primary" >Save</button>
             </div>
+            <?php } ?>
         </form>
     </div>
 </div>

@@ -101,4 +101,18 @@ class Material extends CI_Controller {
         $data['material'] = $this->Material_model->getMaterialSummaryDept($project);
         echo($this->load->view('material/material_summary_dept', $data, TRUE));
     }
+    
+    public function AJAXgetMaterialEditForm(){
+        $material = $this->input->post('material');
+        $data['material'] = $this->Material_model->getMaterialByID($material);
+        echo($this->load->view('material/edit_material', $data, TRUE));
+    }
+    
+    public function AJAXUpdateMaterial(){
+        $res = $this->Material_model->updateMaterial();
+        $project = $this->input->post('project');
+        $department = $this->input->post('department');
+        $data['material'] = $this->Material_model->getAllMaterials($project, $department);
+        echo($this->load->view('material/material_project', $data, TRUE));
+    }
 }

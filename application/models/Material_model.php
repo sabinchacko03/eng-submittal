@@ -36,7 +36,7 @@ class Material_model extends CI_Model {
         // $this->db->select("count(material.id) as total");
         $this->db->select("(SELECT COUNT(m1.id) FROM material as m1 where m1.project = material.project) as total");
         $this->db->select("COUNT(DISTINCT(material_submittal_log.material)) as submitted");
-        $this->db->select("(SELECT COUNT(m1.id) from material m1 INNER JOIN material_status as ms on ms.id = m1.status WHERE ms.name = 'A' and m1.project = material.project AND m1.department = material.department) as approved");
+        $this->db->select("(SELECT COUNT(m1.id) from material m1 INNER JOIN material_status as ms on ms.id = m1.status WHERE ms.name = 'A' and m1.project = material.project) as approved");
         $this->db->select("(SELECT COUNT(m1.id) from material m1 INNER JOIN material_status as ms on ms.id = m1.status WHERE ms.name = 'B' and m1.project = material.project) as b");
         $this->db->select("(SELECT COUNT(m1.id) from material m1 INNER JOIN material_status as ms on ms.id = m1.status WHERE ms.name = 'C' and m1.project = material.project) as c");
         $this->db->select("(SELECT COUNT(m1.id) from material m1 INNER JOIN material_status as ms on ms.id = m1.status WHERE ms.name = 'D' and m1.project = material.project) as d");
@@ -216,5 +216,15 @@ class Material_model extends CI_Model {
         $this->db->set('status', $status);
         $this->db->where('id', $material);
         return $this->db->update('material');
+    }
+    
+    public function updateMaterial(){
+        $data = $this->input->post();
+        $data['modified_by'] = $this->Login_model->getUserIdFromUsername($this->session->username);
+        unset($data['submit']);
+        unset($data['project']);
+        unset($data['department']);
+        $this->db->where('id', $data['id']);
+        $this->db->update('material', $data);
     }
 }

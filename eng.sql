@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 16, 2020 at 09:19 PM
+-- Generation Time: Sep 23, 2020 at 08:39 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -21,6 +21,49 @@ SET time_zone = "+00:00";
 --
 -- Database: `eng`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `built_drawing`
+--
+
+DROP TABLE IF EXISTS `built_drawing`;
+CREATE TABLE IF NOT EXISTS `built_drawing` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `project` int(11) NOT NULL,
+  `department` int(11) NOT NULL,
+  `name` varchar(500) NOT NULL,
+  `description` text NOT NULL,
+  `proposed_make` varchar(200) NOT NULL,
+  `planned_date` date NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 0,
+  `is_approved` int(11) NOT NULL DEFAULT 0,
+  `modified_by` int(11) NOT NULL,
+  `modified_date` date NOT NULL,
+  `active` int(11) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `built_drawing_log`
+--
+
+DROP TABLE IF EXISTS `built_drawing_log`;
+CREATE TABLE IF NOT EXISTS `built_drawing_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `shop_drawing` int(11) NOT NULL,
+  `revision` int(11) NOT NULL,
+  `actual_submittal_date` date NOT NULL,
+  `returned_date` date NOT NULL,
+  `status` int(11) NOT NULL,
+  `modified_by` int(11) NOT NULL,
+  `modified_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -71,7 +114,7 @@ INSERT INTO `departments` (`id`, `name`, `status`) VALUES
 (1, 'Plumbing', 1),
 (2, 'HVAC', 1),
 (3, 'Electrical', 1),
-(4, 'Fire Fighting', 1);
+(4, 'MEP', 1);
 
 -- --------------------------------------------------------
 
@@ -144,21 +187,105 @@ CREATE TABLE IF NOT EXISTS `material` (
   `active` int(11) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `material`
 --
 
 INSERT INTO `material` (`id`, `project`, `department`, `name`, `description`, `proposed_make`, `planned_date`, `status`, `is_approved`, `modified_by`, `modified_date`, `active`) VALUES
-(1, 1, 1, 'MEP/MS/FF-01 A', ' Pre-Qualification for the Fire Protection System', '', '2020-09-29', 4, 0, 56, '2020-09-16', 1),
-(2, 1, 2, 'MEP/MS/FF-01 ', 'Fire Fighting pipes & Fittings\r\n', '', '2020-09-24', 1, 0, 56, '2020-09-16', 1),
-(3, 2, 1, 'MEP/MS/FF-03', 'Shield, Kennedy, Nibco, Grinnel\r\n ', '', '2020-09-30', 1, 0, 56, '2020-09-16', 1),
-(4, 2, 2, 'MEP/MS/FF-04', ' vv', '', '2020-09-30', 1, 0, 56, '2020-09-16', 1),
-(5, 4, 3, 'MEP/MS/FF-05', 'ddd', '', '2020-09-29', 2, 0, 56, '2020-09-16', 1),
-(6, 4, 4, 'MEP/MS/FF-06', ' dd', '', '2020-09-24', 1, 0, 56, '2020-09-16', 1),
-(7, 2, 1, 'MEP/MS/FF-051', ' dd', '', '2020-09-18', 1, 0, 56, '2020-09-16', 1),
-(8, 2, 2, 'R476-ASEME-MT-MEP/EL-01', 'Furse, BICC, A.N Wallis, Cupra, Franklin\r\n ', 'WALLIS', '2020-09-30', 1, 0, 56, '2020-09-16', 1);
+(1, 1, 1, 'MEP/MS/FF-01 A', ' Pre-Qualification for the Fire Protection System', '', '2020-09-29', 1, 1, 56, '2020-09-16', 1),
+(2, 1, 2, 'MEP/MS/FF-01 ', 'Fire Fighting pipes & Fittings\r\n', '', '2020-09-24', 0, 0, 56, '2020-09-16', 1),
+(3, 2, 1, 'MEP/MS/FF-03', 'Shield, Kennedy, Nibco, Grinnel\r\n ', '', '2020-09-30', 0, 0, 56, '2020-09-16', 1),
+(4, 2, 2, 'MEP/MS/FF-04', ' vv', '', '2020-09-30', 5, 0, 56, '2020-09-16', 1),
+(5, 4, 3, 'MEP/MS/FF-05', 'ddd', 'POropose', '2020-09-30', 5, 0, 56, '2020-09-16', 1),
+(6, 4, 4, 'MEP/MS/FF-06', ' dd', '', '2020-09-24', 0, 0, 56, '2020-09-16', 1),
+(7, 2, 1, 'MEP/MS/FF-051', ' dd', '', '2020-09-18', 3, 0, 56, '2020-09-16', 1),
+(8, 1, 2, 'R476-ASEME-MT-MEP/AC-02', 'Trosten (UAE) , Trane,York,Euroclima,Mekar\r\n ', 'TROSTEN', '2020-09-30', 5, 0, 56, '2020-09-16', 1),
+(9, 2, 2, 'PALM-HVAC-01', ' FAHU', 'JCI', '2020-09-25', 5, 0, 56, '2020-09-17', 1),
+(10, 1, 2, 'J1677-HVAC-01', ' FAHU', 'JCI', '2020-09-24', 1, 1, 56, '2020-09-17', 1),
+(11, 1, 3, 'J677-EL-001', ' LV SWITCHGEAR', 'L&T', '2020-09-17', 1, 1, 56, '2020-09-17', 1),
+(12, 6, 2, 'PDLM-MT-AC-01', ' VRF Units\r\n', 'VTS CLIMA', '2020-09-22', 5, 0, 56, '2020-09-21', 1),
+(13, 6, 2, 'PDLM-MT-AC-02', ' DX UNITS', 'RHEEM', '2020-09-24', 5, 0, 56, '2020-09-23', 1),
+(14, 6, 2, 'PDLM-MT-AC-03', ' Ventilation Fans', 'S&P', '2020-10-24', 0, 0, 56, '2020-09-23', 1),
+(15, 6, 2, 'PDLM-MT-AC-04', ' FAHU', 'VTS', '2020-09-24', 0, 0, 56, '2020-09-23', 1),
+(16, 6, 2, 'PDLM-MT-AC-05', ' Pre Insulated Duct for FCU\'s', '', '2020-10-11', 0, 0, 56, '2020-09-23', 1),
+(17, 6, 2, 'PDLM-MT-AC-06', ' Refrigerant Copper Pipes and Fittings', '', '2020-10-29', 0, 0, 56, '2020-09-23', 1),
+(18, 6, 2, 'PDLM-MT-AC-07', ' GI Fire rated ducts & Accessories incl Fire rated VCD', '', '2020-10-14', 0, 0, 56, '2020-09-23', 1),
+(19, 6, 2, 'PDLM-MT-AC-08', ' Insulation for Refrigerant Pipes', '', '2020-10-19', 0, 0, 56, '2020-09-23', 1),
+(20, 6, 2, 'PDLM-MT-AC-09', ' Volume Control Dampers, NRD & PRD', '', '2020-10-13', 0, 0, 56, '2020-09-23', 1),
+(21, 6, 2, 'PDLM-MT-AC-10', ' MD, MFSD & MSD', '', '2020-10-18', 0, 0, 56, '2020-09-23', 1),
+(22, 6, 2, 'PDLM-MT-AC-11', ' Fire Dampers', '', '2020-10-18', 0, 0, 56, '2020-09-23', 1),
+(23, 6, 2, 'PDLM-MT-AC-12', ' Supports and Hangers for Ref. Pipes', '', '2020-10-21', 0, 0, 56, '2020-09-23', 1),
+(24, 6, 2, 'PDLM-MT-AC-13', ' Acoustic Duct Lining', '', '2020-10-15', 0, 0, 56, '2020-09-23', 1),
+(25, 6, 2, 'PDLM-MT-AC-14', ' Flexible Duct Connector', '', '2020-10-08', 0, 0, 56, '2020-09-23', 1),
+(26, 6, 2, 'PDLM-MT-AC-15', ' Vibration Isolators', '', '2020-10-29', 0, 0, 56, '2020-09-23', 1),
+(27, 6, 2, 'PDLM-MT-AC-16', ' Coatings, Adhesives and Sealants', '', '2020-10-08', 0, 0, 56, '2020-09-23', 1),
+(28, 6, 2, 'PDLM-MT-AC-17', ' Sound Attenuators', '', '2020-11-13', 0, 0, 56, '2020-09-23', 1),
+(29, 6, 2, 'PDLM-MT-AC-18', ' Access Doors for Fire Dampers', '', '2020-10-18', 0, 0, 56, '2020-09-23', 1),
+(30, 6, 2, 'PDLM-MT-AC-19', ' Flexible Round Insulated Ducts', '', '2020-10-20', 0, 0, 56, '2020-09-23', 1),
+(31, 6, 2, 'PDLM-MT-AC-20', ' Grills, Diffusers and Louvers', '', '2020-11-13', 0, 0, 56, '2020-09-23', 1),
+(32, 6, 2, 'PDLM-MT-AC-21', ' Air Curtain', '', '2020-10-14', 0, 0, 56, '2020-09-23', 1),
+(33, 6, 2, 'PDLM-MT-AC-22', ' MCC Control Panels', '', '2020-11-24', 0, 0, 56, '2020-09-23', 1),
+(34, 6, 2, 'PDLM-MT-AC-23', ' MEP Identification Labels', '', '2020-10-29', 0, 0, 56, '2020-09-23', 1),
+(35, 6, 2, 'PDLM-MT-AC-24', ' Fire Stopping Sealant - MEP', '', '2020-11-19', 0, 0, 56, '2020-09-23', 1),
+(36, 6, 2, 'PDLM-MT-AC-25', ' Aluminum Cladding', '', '2020-11-19', 0, 0, 56, '2020-09-23', 1),
+(37, 6, 2, 'PDLM-MT-AC-26', ' MS Ducting', '', '2020-10-14', 0, 0, 56, '2020-09-23', 1),
+(38, 6, 2, 'PDLM-MT-AC-27', ' ESP', '', '2020-10-19', 0, 0, 56, '2020-09-23', 1),
+(39, 6, 2, 'PDLM-MT-AC-28', ' GI Duct', '', '2020-10-14', 0, 0, 56, '2020-09-23', 1),
+(40, 6, 2, 'PDLM-MT-AC-29', ' MS Duct Insulation', '', '2020-10-19', 0, 0, 56, '2020-09-23', 1),
+(41, 6, 2, 'PDLM-MT-AC-30', ' CO Monitoring System', '', '2020-10-30', 0, 0, 56, '2020-09-23', 1),
+(42, 6, 3, 'PDLM-MT-EL-01', ' uPVC Duct Pipes & Fittings for EL & ELV Systems', '', '2020-09-24', 0, 0, 56, '2020-09-23', 1),
+(43, 6, 3, 'PDLM-MT-EL-02', ' PVC Conduits & Accessories', '', '2020-09-29', 0, 0, 56, '2020-09-23', 1),
+(44, 6, 3, 'PDLM-MT-EL-03', ' GI Conduit & Accessories', '', '2020-09-30', 0, 0, 56, '2020-09-23', 1),
+(45, 6, 3, 'PDLM-MT-EL-04', ' GI Boxes', '', '2020-09-29', 0, 0, 56, '2020-09-23', 1),
+(46, 6, 3, 'PDLM-MT-EL-05', ' GI Flexible Conduit', '', '2020-09-30', 0, 0, 56, '2020-09-23', 1),
+(47, 6, 3, 'PDLM-MT-EL-06', ' Cable Tray, Trunking & Accessories', '', '2020-09-30', 0, 0, 56, '2020-09-23', 1),
+(48, 6, 3, 'PDLM-MT-EL-07', ' Cables and Wires', '', '2020-10-04', 0, 0, 56, '2020-09-23', 1),
+(49, 6, 3, 'PDLM-MT-EL-08', ' Fire Proof Cable FP 400', '', '2020-10-06', 0, 0, 56, '2020-09-23', 1),
+(50, 6, 3, 'PDLM-MT-EL-09', ' Fire Resistant Cable', '', '2020-10-18', 0, 0, 56, '2020-09-23', 1),
+(51, 6, 3, 'PDLM-MT-EL-10', ' Heat Resistant Cable', '', '2020-10-11', 0, 0, 56, '2020-09-23', 1),
+(52, 6, 3, 'PDLM-MT-EL-11', ' Earthing & Lightning Control System', '', '2020-10-05', 0, 0, 56, '2020-09-23', 1),
+(53, 6, 3, 'PDLM-MT-EL-12', ' Lighting Protection System', '', '2020-10-06', 0, 0, 56, '2020-09-23', 1),
+(54, 6, 3, 'PDLM-MT-EL-13', ' Structured Cabling System', '', '2020-11-20', 0, 0, 56, '2020-09-23', 1),
+(55, 6, 3, 'PDLM-MT-EL-14', ' Fire Alarm & Voice Evacuation System', '', '2020-11-05', 0, 0, 56, '2020-09-23', 1),
+(56, 6, 3, 'PDLM-MT-EL-15', ' Emergency Lighting System', '', '2020-11-05', 0, 0, 56, '2020-09-23', 1),
+(57, 6, 3, 'PDLM-MT-EL-16', 'Isolators ', '', '2020-10-29', 0, 0, 56, '2020-09-23', 1),
+(58, 6, 3, 'PDLM-MT-EL-17', ' CCTV System Incl UPS', '', '2020-11-12', 0, 0, 56, '2020-09-23', 1),
+(59, 6, 3, 'PDLM-MT-EL-18', ' Access Control System', '', '2020-11-19', 0, 0, 56, '2020-09-23', 1),
+(60, 6, 3, 'PDLM-MT-EL-19', ' Audio Intercom System', '', '2020-11-19', 0, 0, 56, '2020-09-23', 1),
+(61, 6, 3, 'PDLM-MT-EL-20', ' Lighting Control System (Standalone)', '', '2020-10-12', 0, 0, 56, '2020-09-23', 1),
+(62, 6, 3, 'PDLM-MT-EL-21', ' Cable Glands & Lugs', '', '2020-10-19', 0, 0, 56, '2020-09-23', 1),
+(63, 6, 3, 'PDLM-MT-EL-22', ' LV Switchgear, Capacitor Bank, ATS', '', '2020-10-25', 0, 0, 56, '2020-09-23', 1),
+(64, 6, 3, 'PDLM-MT-EL-23', ' Wiring Accessories Incl Floor Box, Ceiling Rose, Door Bell', '', '2020-11-10', 0, 0, 56, '2020-09-23', 1),
+(65, 6, 3, 'PDLM-MT-EL-24', ' Diesel Generator Set (Standby)', '', '2020-11-20', 0, 0, 56, '2020-09-23', 1),
+(66, 6, 3, 'PDLM-MT-EL-25', ' Gate Barrier System', '', '2020-11-30', 0, 0, 56, '2020-09-23', 1),
+(67, 6, 3, 'PDLM-MT-EL-26', ' Disable Alarm System', '', '2020-11-25', 0, 0, 56, '2020-09-23', 1),
+(68, 6, 1, 'PDLM-MT-PL-01', ' uPVC Under Ground Drainage Pipe & Fittings', '', '2020-09-22', 0, 0, 56, '2020-09-23', 1),
+(69, 6, 1, 'PDLM-MT-PL-02', ' uPVC Above Ground Drainage Pipe & Fittings', '', '2020-10-19', 0, 0, 56, '2020-09-23', 1),
+(70, 6, 1, 'PDLM-MT-PL-03', ' uPVC High Pressure Pipe & Fittings', '', '2020-09-22', 0, 0, 56, '2020-09-23', 1),
+(71, 6, 1, 'PDLM-MT-PL-04', ' Low Noise Pipe & Fittings', '', '2020-10-14', 0, 0, 56, '2020-09-23', 1),
+(72, 6, 1, 'PDLM-MT-PL-05', ' GI Pipe & Fittings', '', '2020-10-19', 0, 0, 56, '2020-09-23', 1),
+(73, 6, 1, 'PDLM-MT-PL-06', 'Pex Pipe & Fittings ', '', '2020-10-22', 0, 0, 56, '2020-09-23', 1),
+(74, 6, 1, 'PDLM-MT-PL-07', ' PPR Pipe Fittings', '', '2020-10-15', 0, 0, 56, '2020-09-23', 1),
+(75, 6, 1, 'PDLM-MT-PL-08', ' Hangers and Supports', '', '2020-10-06', 0, 0, 56, '2020-09-23', 1),
+(76, 6, 1, 'PDLM-MT-PL-09', ' Floor Drain, Balcony drain & Floor Cleanout', '', '2020-10-25', 0, 0, 56, '2020-09-23', 1),
+(77, 6, 1, 'PDLM-MT-PL-10', ' Rain Water Outlets, Planter Drain, Funnel Drain', '', '2020-10-29', 0, 0, 56, '2020-09-23', 1),
+(78, 6, 1, 'PDLM-MT-PL-11', ' Manhole/Gully Trap Covers/Catch Basin Cover/Channel Grating', '', '2020-10-08', 0, 0, 56, '2020-09-23', 1),
+(79, 6, 1, 'PDLM-MT-PL-12', ' Water Supply Pipe Insulation - Rubber Insulation', '', '2020-10-15', 0, 0, 56, '2020-09-23', 1),
+(80, 6, 1, 'PDLM-MT-PL-13', ' Water Heater', '', '2020-10-24', 0, 0, 56, '2020-09-23', 1),
+(81, 6, 1, 'PDLM-MT-PL-14', ' Water Hammer Arrestors', '', '2020-10-08', 0, 0, 56, '2020-09-23', 1),
+(82, 6, 1, 'PDLM-MT-PL-15', ' Water Supply Valves ', '', '2020-10-29', 0, 0, 56, '2020-09-23', 1),
+(83, 6, 1, 'PDLM-MT-PL-16', ' Domestic Pumps', '', '2020-10-29', 0, 0, 56, '2020-09-23', 1),
+(84, 6, 1, 'PDLM-MT-PL-17', ' Sump Pumps', '', '2020-10-29', 0, 0, 56, '2020-09-23', 1),
+(85, 6, 1, 'PDLM-MT-PL-18', ' GRP Water Tanks', '', '2020-09-22', 0, 0, 56, '2020-09-23', 1),
+(86, 6, 1, 'PDLM-MT-PL-19', ' Chlorination & Disinfection of PL System', '', '2020-11-12', 0, 0, 56, '2020-09-23', 1),
+(87, 6, 1, 'PDLM-MT-PL-20', ' Gully Trap/Catch Basin', '', '2020-10-12', 0, 0, 56, '2020-09-23', 1),
+(88, 6, 1, 'PDLM-MT-PL-21', ' Aluminum Cladding Sheets', '', '2020-11-19', 0, 0, 56, '2020-09-23', 1),
+(89, 6, 1, 'PDLM-MT-PL-22', ' uPVC, High Pressure & Galvanized Puddle Flanges', '', '2020-10-14', 0, 0, 56, '2020-09-23', 1),
+(90, 6, 1, 'PDLM-MT-PL-23', ' Flexible Pipe Connector for Water Heater & Angle Valve', '', '2020-10-15', 0, 0, 56, '2020-09-23', 1),
+(91, 2, 2, 'qqq', ' ', '', '2020-09-24', 0, 0, 56, '2020-09-23', 1),
+(92, 1, 1, 'Mat2', 'sfdf ', '', '2020-09-23', 1, 0, 56, '2020-09-23', 1);
 
 -- --------------------------------------------------------
 
@@ -203,7 +330,7 @@ CREATE TABLE IF NOT EXISTS `material_submittal_log` (
   `modified_by` int(11) NOT NULL,
   `modified_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `material_submittal_log`
@@ -215,7 +342,23 @@ INSERT INTO `material_submittal_log` (`id`, `material`, `revision`, `actual_subm
 (3, 5, 2, '2020-09-16', '2020-09-25', 4, 56, '2020-09-17 01:02:14'),
 (4, 0, 0, '0000-00-00', '0000-00-00', 0, 56, '2020-09-16 00:00:00'),
 (5, 5, 3, '2020-09-16', '2020-09-30', 2, 56, '2020-09-17 01:02:24'),
-(6, 1, 0, '2020-09-16', '2020-09-23', 4, 56, '2020-09-17 01:00:57');
+(6, 1, 0, '2020-09-16', '2020-09-23', 4, 56, '2020-09-17 01:00:57'),
+(7, 7, 0, '2020-09-16', '2020-09-18', 3, 56, '2020-09-16 17:11:35'),
+(8, 7, 1, '2020-09-16', '2020-09-18', 3, 56, '2020-09-16 17:11:54'),
+(9, 8, 0, '2020-09-17', '0000-00-00', 5, 56, '2020-09-17 00:00:00'),
+(10, 4, 0, '2020-09-17', '0000-00-00', 5, 56, '2020-09-17 00:00:00'),
+(11, 9, 0, '2020-09-17', '2020-09-18', 4, 56, '2020-09-17 09:47:54'),
+(12, 9, 1, '2020-09-19', '0000-00-00', 5, 56, '2020-09-17 00:00:00'),
+(13, 10, 0, '2020-09-17', '2020-09-19', 3, 56, '2020-09-17 10:04:57'),
+(14, 10, 1, '2020-09-18', '2020-09-20', 1, 56, '2020-09-17 10:06:14'),
+(15, 11, 0, '2020-09-18', '2020-09-19', 3, 56, '2020-09-17 10:31:48'),
+(16, 11, 1, '2020-09-17', '2020-09-18', 1, 56, '2020-09-17 10:34:18'),
+(17, 12, 0, '2020-09-22', '0000-00-00', 5, 56, '2020-09-21 00:00:00'),
+(18, 13, 0, '2020-09-23', '0000-00-00', 5, 56, '2020-09-23 00:00:00'),
+(19, 1, 0, '2020-09-23', '0000-00-00', 5, 56, '2020-09-23 00:00:00'),
+(20, 1, 0, '2020-09-23', '0000-00-00', 5, 56, '2020-09-23 00:00:00'),
+(21, 1, 0, '2020-09-23', '2020-09-23', 1, 56, '2020-09-23 23:22:25'),
+(22, 5, 4, '2020-09-23', '0000-00-00', 5, 56, '2020-09-23 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -232,7 +375,7 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `order_id` int(3) NOT NULL,
   `status` int(3) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `menu`
@@ -243,8 +386,10 @@ INSERT INTO `menu` (`id`, `name`, `link`, `parent`, `order_id`, `status`) VALUES
 (2, 'Project Management', 'projects', 1, 1, 1),
 (3, 'Material', '#', 0, 2, 1),
 (4, 'Material Submittal', 'material', 3, 1, 1),
-(5, 'Account', '#', 0, 3, 1),
-(6, 'Logout', 'login/logout', 5, 1, 1);
+(5, 'Account', '#', 0, 4, 1),
+(6, 'Logout', 'login/logout', 5, 1, 1),
+(7, 'Shop Drawing', '#', 0, 3, 1),
+(8, 'Shop Drawing Submittals', 'shop_drawing', 7, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -330,7 +475,7 @@ CREATE TABLE IF NOT EXISTS `projects` (
   `variation_ff` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `project_id` (`project_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `projects`
@@ -339,7 +484,69 @@ CREATE TABLE IF NOT EXISTS `projects` (
 INSERT INTO `projects` (`id`, `name`, `project_id`, `start_date`, `end_date`, `client`, `m_contractor`, `consultant`, `project_value`, `location`, `plumbing_total`, `hvac_total`, `electrical_total`, `ff_total`, `variation`, `manager`, `status`, `modified_by`, `modified_date`, `variation_plumbing`, `variation_hvac`, `variation_electrical`, `variation_ff`) VALUES
 (1, 'Proposed Four Residential & Commercial building', 'J1677', '2020-09-02', '2021-12-31', 4, 4, 'Golden Square Engineering Consultants', 0, 'OUD METHA', 8031000, 13715000, 16374000, 4630000, 0, '4', 1, 16, '2020-09-02 00:00:00', 0, 0, 1200000, 0),
 (2, '(B+G+13+Roof)  3 Number of Residential Building ', 'S001', '2016-05-05', '2020-12-31', 3, 3, 'Al Asri Engineering Consultant. ', 0, 'PALM JUMEIRAH', 6169500, 19100000, 14500000, 3330500, 0, '2', 1, 56, '2020-09-02 00:00:00', 0, 0, 0, 0),
-(4, 'Al Qusais Residential Development', 'J1671', '2020-09-03', '2021-05-31', 2, 2, 'Schuster Pechtold', 0, 'AL QUASIS', 18000000, 30000000, 25000000, 0, 0, '5', 1, 30, '2020-09-03 00:00:00', 0, 0, 0, 0);
+(4, 'Al Qusais Residential Development', 'J1671', '2020-09-03', '2021-05-31', 2, 2, 'Schuster Pechtold', 0, 'AL QUASIS', 18000000, 30000000, 25000000, 0, 0, '5', 1, 30, '2020-09-03 00:00:00', 0, 0, 0, 0),
+(5, 'PORT DE LA MER APARTMENTS (1, 2 & 3 RESIDENTIAL BUILDINGS)', 'J1676', '2020-09-15', '2022-05-15', 0, 0, 'DEWAN ARCHITECTS & ENGINEERS', 0, 'Jumeirah First, Dubai, U.A.E.', 0, 0, 0, 0, 0, '', 1, 56, '2020-09-21 00:00:00', 0, 0, 0, 0),
+(6, 'J 1676', 'LA MER', '2020-09-20', '2022-03-19', 2, 1, 'Schuster Pechtold', 0, 'LA MER', 800000, 1000000, 5000000, 6000000, 0, '2', 1, 56, '2020-09-21 00:00:00', 0, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shop_drawing`
+--
+
+DROP TABLE IF EXISTS `shop_drawing`;
+CREATE TABLE IF NOT EXISTS `shop_drawing` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `project` int(11) NOT NULL,
+  `department` int(11) NOT NULL,
+  `name` varchar(500) NOT NULL,
+  `description` text NOT NULL,
+  `proposed_make` varchar(200) NOT NULL,
+  `planned_date` date NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 0,
+  `is_approved` int(11) NOT NULL DEFAULT 0,
+  `modified_by` int(11) NOT NULL,
+  `modified_date` date NOT NULL,
+  `active` int(11) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `shop_drawing`
+--
+
+INSERT INTO `shop_drawing` (`id`, `project`, `department`, `name`, `description`, `proposed_make`, `planned_date`, `status`, `is_approved`, `modified_by`, `modified_date`, `active`) VALUES
+(1, 1, 4, 'MEP-D-1', ' ', 'WW1', '2020-09-29', 4, 0, 56, '2020-09-23', 1),
+(2, 4, 1, 'www1', ' ', 'dddd', '2020-09-29', 4, 0, 56, '2020-09-23', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shop_drawing_log`
+--
+
+DROP TABLE IF EXISTS `shop_drawing_log`;
+CREATE TABLE IF NOT EXISTS `shop_drawing_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `shop_drawing` int(11) NOT NULL,
+  `revision` int(11) NOT NULL,
+  `actual_submittal_date` date NOT NULL,
+  `returned_date` date NOT NULL,
+  `status` int(11) NOT NULL,
+  `modified_by` int(11) NOT NULL,
+  `modified_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `shop_drawing_log`
+--
+
+INSERT INTO `shop_drawing_log` (`id`, `shop_drawing`, `revision`, `actual_submittal_date`, `returned_date`, `status`, `modified_by`, `modified_date`) VALUES
+(1, 1, 0, '2020-09-23', '2020-09-25', 4, 56, '2020-09-24 00:30:48'),
+(2, 2, 0, '2020-09-23', '2020-09-19', 4, 56, '2020-09-24 00:31:37'),
+(3, 2, 1, '2020-09-23', '2020-09-25', 4, 56, '2020-09-24 00:31:55');
 
 -- --------------------------------------------------------
 

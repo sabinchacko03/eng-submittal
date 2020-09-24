@@ -42,7 +42,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <input type="text" data-toggle="datepicker-icon" name="planned_date" id='planned_date' autocomplete="off" readonly required/>
+                            <input type="text" data-toggle="datepicker-icon" name="planned_date" id='planned_date' autocomplete="off" readonly required value="<?= $row->planned_date ?>"/>
                         </div>
                     </div>                    
                 </div>     

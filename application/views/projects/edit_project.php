@@ -1,4 +1,10 @@
-
+<?php 
+if($this->edit_role){
+    $readonly = '';
+}else{
+    $readonly = 'readonly';
+}
+?>
 <div class="col-md-12">
     <div class="main-card mb-3 card">
         <div class="card-header">
@@ -23,7 +29,7 @@
                     </div>
                     <div class="form-group row">         
                         <div class="col-md-12">
-                            <label for="project_id" class="ccol-form-label">Name</label>
+                            <label for="project_id" class="ccol-form-label">Project ID</label>
                             <div class="col-sm-12">
                                 <input type="text" name="project_id" id="project_id" class="form-control" value="<?= $row->project_id; ?>" required/>
                             </div>
@@ -85,19 +91,19 @@
                     </div> 
                     <div class="col-md-12">
                         <label for="plumbing_total" class="col-form-label">Projected Value - Plumbing</label>
-                        <input type="text" name="plumbing_total" id="plumbing_total" class="form-control" required value="<?= $row->plumbing_total; ?>" readonly/>
+                        <input type="text" name="plumbing_total" id="plumbing_total" class="form-control" required value="<?= $row->plumbing_total; ?>" <?= $readonly ?>/>
                     </div>
                     <div class="col-md-12">
                         <label for="hvac_total" class="col-form-label">Projected Value - HVAC</label>
-                        <input type="text" name="hvac_total" id="hvac_total" class="form-control" required value="<?= $row->hvac_total; ?>" readonly/>
+                        <input type="text" name="hvac_total" id="hvac_total" class="form-control" required value="<?= $row->hvac_total; ?>" <?= $readonly ?>/>
                     </div>
                     <div class="col-md-12">
                         <label for="electrical_total" class="col-form-label">Projected Value - Electrical</label>
-                        <input type="text" name="electrical_total" id="electrical_total" class="form-control" required value="<?= $row->electrical_total; ?>" readonly/>
+                        <input type="text" name="electrical_total" id="electrical_total" class="form-control" required value="<?= $row->electrical_total; ?>" <?= $readonly ?>/>
                     </div>                    
                     <div class="col-md-12">
                         <label for="ff_total" class="col-form-label">Projected Value - Fire Fighting</label>
-                        <input type="text" name="ff_total" id="ff_total" class="form-control" required value="<?= $row->ff_total; ?>" readonly/>
+                        <input type="text" name="ff_total" id="ff_total" class="form-control" required value="<?= $row->ff_total; ?>" <?= $readonly ?>/>
                     </div>
                     <!--                    <div class="col-md-12">
                                             <label for="variation" class="col-sm-6 col-form-label">Variation</label>
@@ -148,7 +154,7 @@
     });
     
     $(function () {
-        $("#start_date").datepicker('option', 'minDate', '0');
-        $("#end_date").datepicker('option', 'minDate', '0');
+//        $("#start_date").datepicker('option', 'minDate', '0');
+//        $("#end_date").datepicker('option', 'minDate', '0');
     });
 </script>

@@ -37,7 +37,7 @@ $(function () {
         var project = $(this).data('project');
         $.post(MATERIAL + '/AJAXgetDeptSummary', {'project': project}, function (result) {
             $("#materialDetailsTable").html(result);
-            $('.table').DataTable();
+            // $('.table').DataTable();
         });
     });
     
@@ -47,14 +47,14 @@ $(function () {
         var department = $(this).data('department');
         $.post(MATERIAL + '/AJAXgetMaterialProject', {'project': project, 'department' : department}, function (result) {
             $("#materialDetailsTable").html(result);
-            $('.table').DataTable();
+            // $('.table').DataTable();
         });
     });
 
     $(document).on("click", ".btn-cancel", function () {
         $.post(MATERIAL + '/AJAXgetMaterialSummary', function (result) {
             $("#materialDetailsTable").html(result);
-            $('.table').DataTable();
+            // $('.table').DataTable();
         });
     });
 

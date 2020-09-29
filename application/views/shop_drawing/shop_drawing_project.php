@@ -24,7 +24,6 @@ foreach ($material->result_array() as $row) {
                         <th>Department</th>
                         <th>Shop Drawing</th>
                         <th>Description</th>
-                        <th>Proposed Make</th>
                         <th>Status</th>
                         <th>Planned Date</th>
                         <?php if ($this->edit_role || $this->delete_role) { ?>
@@ -42,7 +41,6 @@ foreach ($material->result_array() as $row) {
                             <td><?= $row['department']; ?></td>  
                             <td><?= $row['name']; ?></td>  
                             <td><?= $row['description']; ?></td>
-                            <td><?= $row['proposed_make']; ?></td>
                             <td><?= $row['status']; ?></td>
                             <td><?= $row['planned_date']; ?></td> 
                             <?php if ($this->edit_role || $this->delete_role) { ?>

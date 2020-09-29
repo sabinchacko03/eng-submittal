@@ -39,10 +39,6 @@
                         <textarea name="description" class="form-control" cols="2"> </textarea>
                     </div>      
                     <div class="col-md-12">                    
-                        <label for="description" class="col-form-label">Proposed Make</label>
-                        <input type="text" name="proposed_make" id="proposed_make" class="form-control" autocomplete="off"/> 
-                    </div> 
-                    <div class="col-md-12">                    
                         <label class="col-form-label">Planned Date</label>
                         <div class="input-group">
                             <div class="input-group-prepend datepicker-trigger">

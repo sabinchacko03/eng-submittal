@@ -26,7 +26,7 @@ $(function () {
                     $(".addShopDrawingForm").trigger("reset");
                     $(".ui-theme-settings").toggleClass("settings-open", 1000);
                     $("#shopDrawingTable").html(result);
-                    $('.table').DataTable();
+                    // $('.table').DataTable();
                 });
             }
         });
@@ -37,7 +37,7 @@ $(function () {
         var project = $(this).data('project');
         $.post(SHOPDRAWING + '/AJAXgetDeptSummary', {'project': project}, function (result) {
             $("#shopDrawingTable").html(result);
-            $('.table').DataTable();
+            // $('.table').DataTable();
         });
     });
     
@@ -54,7 +54,7 @@ $(function () {
     $(document).on("click", ".btn-cancel", function () {
         $.post(SHOPDRAWING + '/AJAXgetShopDrawingSummary', function (result) {
             $("#shopDrawingTable").html(result);
-            $('.table').DataTable();
+            // $('.table').DataTable();
         });
     });
 

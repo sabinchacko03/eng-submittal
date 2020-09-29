@@ -50,6 +50,20 @@ foreach ($material->result_array() as $row) {
                     </tr>
                 <?php } ?>
             </tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </tfoot>
         </table>
         </div>
         <div class="d-block text-right card-footer">
@@ -57,3 +71,76 @@ foreach ($material->result_array() as $row) {
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('.table').DataTable({            
+            footerCallback: function ( row, data, start, end, display ) {
+            var api = this.api(), data;
+ 
+                // converting to interger to find total
+                var intVal = function ( i ) {
+                    return typeof i === 'string' ?
+                        i.replace(/[\$,]/g, '')*1 :
+                        typeof i === 'number' ?
+                            i : 0;
+                };
+    
+                // computing column Total of the complete result 
+                var total = api
+                    .column( 2 )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+
+                var submitted = api
+                    .column( 3 )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+                    
+                var aStatus = api
+                    .column( 4 )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );  
+                var bStatus = api
+                .column( 5 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );                                  
+                var cStatus = api
+                .column( 6 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+                var dStatus = api
+                .column( 7 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+                var urStatus = api
+                .column( 8 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+                // Update footer by showing the total with the reference of the column index 
+                $( api.column( 1 ).footer() ).html('Total : ');
+                $( api.column( 2 ).footer() ).html(total);
+                $( api.column( 3 ).footer() ).html(submitted);
+                $( api.column( 4 ).footer() ).html(aStatus);
+                $( api.column( 5 ).footer() ).html(bStatus);
+                $( api.column( 6 ).footer() ).html(cStatus);
+                $( api.column( 7 ).footer() ).html(dStatus);
+                $( api.column( 8 ).footer() ).html(urStatus);
+            },
+        });
+    });
+</script>

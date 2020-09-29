@@ -1,10 +1,10 @@
 <div class="col-lg-12">
     <div class="main-card mb-3 card">
         <div class="card-header">
-            <i class="header-icon lnr-graduation-hat icon-gradient bg-happy-itmeo"> </i>Overall Material Submittal
+            <i class="header-icon lnr-graduation-hat icon-gradient bg-happy-itmeo"> </i>Overall Shop Drawing
             <div class="btn-actions-pane-right">
                 <?php if ($this->edit_role) { ?>
-                    <button class="btn btn-square btn-primary btn-sm btn-add-material-form"><i class="fa fa-plus-circle"></i> New Material</button>
+                    <button class="btn btn-square btn-primary btn-sm btn-add-shop-drawing-form"><i class="fa fa-plus-circle"></i> New Shop Drawing</button>
                 <?php } ?>
             </div>
         </div>
@@ -45,7 +45,94 @@
                     </tr>
                 <?php } ?>
             </tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </tfoot>
         </table>
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('.table').DataTable({            
+            footerCallback: function ( row, data, start, end, display ) {
+            var api = this.api(), data;
+ 
+                // converting to interger to find total
+                var intVal = function ( i ) {
+                    return typeof i === 'string' ?
+                        i.replace(/[\$,]/g, '')*1 :
+                        typeof i === 'number' ?
+                            i : 0;
+                };
+    
+                // computing column Total of the complete result 
+                var total = api
+                    .column( 2 )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+
+                var submitted = api
+                    .column( 3 )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+                    
+                var aStatus = api
+                    .column( 4 )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );  
+                var bStatus = api
+                .column( 5 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );                                  
+                var cStatus = api
+                .column( 6 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+                var dStatus = api
+                .column( 7 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+                var urStatus = api
+                .column( 8 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+                // Update footer by showing the total with the reference of the column index 
+                $( api.column( 1 ).footer() ).html('Total : ');
+                $( api.column( 2 ).footer() ).html(total);
+                $( api.column( 3 ).footer() ).html(submitted);
+                $( api.column( 4 ).footer() ).html(aStatus);
+                $( api.column( 5 ).footer() ).html(bStatus);
+                $( api.column( 6 ).footer() ).html(cStatus);
+                $( api.column( 7 ).footer() ).html(dStatus);
+                $( api.column( 8 ).footer() ).html(urStatus);
+            },
+        });
+    });
+</script>

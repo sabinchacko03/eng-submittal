@@ -51,6 +51,14 @@
                         <input type="hidden" name="status" value="<?= $status?>" />
                     </div> 
                     <div class="col-md-12">                    
+                        <label for="project" class="col-form-label">Revision</label>
+                        <input type="text" name="doc1" id="doc1" class="form-control" required/>
+                    </div> 
+                    <div class="col-md-12">                    
+                        <label for="project" class="col-form-label">Revision</label>
+                        <input type="text" name="doc2" id="doc2" class="form-control" required/>
+                    </div> 
+                    <div class="col-md-12">                    
                         <label for="project" class="col-form-label">Actual Submittal Date</label>
                         <div class="input-group">
                             <div class="input-group-prepend datepicker-trigger">

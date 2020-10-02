@@ -146,14 +146,14 @@ $(function () {
         $("#masterDiv").html('');
     });
 
-    $(document).mouseup(function (e)
-    {
-        var container = $(".theme-settings__inner");
+    // $(document).mouseup(function (e)
+    // {
+    //     var container = $(".theme-settings__inner");
 
-        // if the target of the click isn't the container nor a descendant of the container
-        if (!container.is(e.target) && container.has(e.target).length === 0 && $('#ui-datepicker-div').has(e.target).length === 0)
-        {
-            $(".ui-theme-settings").removeClass("settings-open");
-        }
-    });
+    //     // if the target of the click isn't the container nor a descendant of the container
+    //     if (!container.is(e.target) && container.has(e.target).length === 0 && $('#ui-datepicker-div').has(e.target).length === 0)
+    //     {
+    //         $(".ui-theme-settings").removeClass("settings-open");
+    //     }
+    // });
 });

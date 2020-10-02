@@ -31,6 +31,7 @@
         <script type="text/javascript" src="<?= base_url() ?>public/assets/scripts/issue.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>public/assets/scripts/material.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>public/assets/scripts/shop_drawing.js"></script>
+        <script type="text/javascript" src="<?= base_url() ?>public/assets/scripts/asbuilt_drawing.js"></script>
         
         <style>
             /*.login-bg{background: url(<?= base_url() . '/public/images/dubai1.jpg' ?>);background-size: cover; background-attachment: fixed; background-repeat: no-repeat; background-position: center;}*/
@@ -70,6 +71,7 @@
             var BILLING = "<?= base_url() . 'billing'; ?>";
             var MATERIAL = "<?= base_url() . 'material'; ?>";
             var SHOPDRAWING = "<?= base_url() . 'shop_drawing'; ?>";
+            var ASBUILT = "<?= base_url() . 'asbuilt_drawing'; ?>";
         </script>
         
     </head>

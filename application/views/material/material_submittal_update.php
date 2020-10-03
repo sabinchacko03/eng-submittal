@@ -65,14 +65,22 @@
                         </div>
                     </div>
                     <div class="col-md-12">                    
+                        <label for="project" class="col-form-label">Document 1 <small>(Google Drive Link)</small></label>
+                        <input type="text" name="doc1" id="doc1" class="form-control" value="<?= $row->doc1 ?>" required/>
+                    </div> 
+                    <div class="col-md-12">                    
+                        <label for="project" class="col-form-label">Document 2 <small>(Google Drive Link)</small></label>
+                        <input type="text" name="doc2" id="doc2" class="form-control" value="<?= $row->doc2 ?>"  required/>
+                    </div>  
+                    <div class="col-md-12">                    
                         <label class="col-form-label">Status</label>
                         <select name="status" id="status" class="form-control" required>
                             <option value="">--- Select Status ---</option>
-                            <?php foreach ($status->result() as $row) { ?>
-                                <option value="<?= $row->id ?>"><?= $row->name . ' - '. $row->description ?></option>
+                            <?php foreach ($status->result() as $row1) { ?>
+                                <option value="<?= $row1->id ?>"><?= $row1->name . ' - '. $row1->description ?></option>
                             <?php } ?>
                         </select>
-                    </div>                   
+                    </div>                                      
                 </div>     
             </div>
             <div class="d-block text-right card-footer">

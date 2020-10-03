@@ -65,6 +65,14 @@
                         </div>
                     </div>
                     <div class="col-md-12">                    
+                        <label for="project" class="col-form-label">Document 1 <small>(Google Drive Link)</small></label>
+                        <input type="text" name="doc1" id="doc1" class="form-control" value="<?= $row->doc1 ?>" required/>
+                    </div> 
+                    <div class="col-md-12">                    
+                        <label for="project" class="col-form-label">Document 2 <small>(Google Drive Link)</small></label>
+                        <input type="text" name="doc2" id="doc2" class="form-control" value="<?= $row->doc2 ?>" required/>
+                    </div> 
+                    <div class="col-md-12">                    
                         <label class="col-form-label">Status</label>
                         <select name="status" id="status" class="form-control" required>
                             <option value="">--- Select Status ---</option>

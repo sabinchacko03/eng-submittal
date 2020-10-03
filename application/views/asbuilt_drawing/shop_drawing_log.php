@@ -7,6 +7,8 @@
                 <th>Expected Returned Date</th>
                 <th>Returned Date</th>
                 <th>Status</th>
+                <th>Doc1</th>
+                <th>Doc2</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -18,6 +20,8 @@
                     <td><?= date('d-M-Y', strtotime('+7 days', strtotime($row->actual_submittal_date))) ?></td>
                     <td><?= $row->returned_date == '0000-00-00' ? 'NA' : date('d-M-Y', strtotime($row->returned_date)) ?></td>
                     <td><?= $row->status ?></td>
+                    <td><a href = "<?= $row->doc1 == '' ? '#' : $row->doc1 ?>" target="_blank">View </a></td>
+                    <td><a href = "<?= $row->doc2 == '' ? '#' : $row->doc2 ?>" target="_blank">View </a></td>
                     <?php if($this->edit_role && $row->status == 'UR'){ ?>
                         <td><a href='#' class="editAsbuiltDrawingLog" data-material-log="<?= $row->id ?>"><i class="fa fa-pencil-square-o" title="Edit"></i></a></td>
                     <?php } ?>

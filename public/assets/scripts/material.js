@@ -26,7 +26,7 @@ $(function () {
                     $(".addMaterialForm").trigger("reset");
                     $(".ui-theme-settings").toggleClass("settings-open", 1000);
                     $("#materialDetailsTable").html(result);
-                    $('.table').DataTable();
+                    //$('.table').DataTable();
                 });
             }
         });

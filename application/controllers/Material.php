@@ -115,4 +115,11 @@ class Material extends CI_Controller {
         $data['material'] = $this->Material_model->getAllMaterials($project, $department);
         echo($this->load->view('material/material_project', $data, TRUE));
     }
+
+    public function AJAXdeleteMaterial(){
+        $material = $this->input->post('material');
+        $ret = $this->Material_model->deleteMaterial($material);
+        $data['material'] = $this->Material_model->getAllMaterials($ret['project'], $ret['department']);
+        echo($this->load->view('material/material_project', $data, TRUE));
+    }
 }

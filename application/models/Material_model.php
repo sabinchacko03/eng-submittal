@@ -227,4 +227,20 @@ class Material_model extends CI_Model {
         $this->db->where('id', $data['id']);
         $this->db->update('material', $data);
     }
+
+    public function deleteMaterial($id){
+        $data = $this->getMaterialByID($id);
+        $this->deleteMaterialLog($id);
+        foreach($data->result() as $row){
+            $ret['project'] = $row->project;
+            $ret['department'] = $row->department;
+            $ret['project_name'] = $row->project_name;
+        }
+        $res = $this->db->delete('material', array('id' => $id));        
+        return $ret;
+    }
+
+    public function deleteMaterialLog($id){
+        $this->db->delete('material_submittal_log', array('material' => $id));
+    }
 }

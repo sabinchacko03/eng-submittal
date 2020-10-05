@@ -52,11 +52,11 @@
                     </div> 
                     <div class="col-md-12">                    
                         <label for="project" class="col-form-label">Document 1 <small>(Google Drive Link)</small></label>
-                        <input type="text" name="doc1" id="doc1" class="form-control" required/>
+                        <input type="text" name="doc1" id="doc1" class="form-control" />
                     </div> 
                     <div class="col-md-12">                    
                         <label for="project" class="col-form-label">Document 2 <small>(Google Drive Link)</small></label>
-                        <input type="text" name="doc2" id="doc2" class="form-control" required/>
+                        <input type="text" name="doc2" id="doc2" class="form-control" />
                     </div> 
                     <div class="col-md-12">                    
                         <label for="project" class="col-form-label">Actual Submittal Date</label>

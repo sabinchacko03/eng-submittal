@@ -112,4 +112,11 @@ class Shop_drawing extends CI_Controller {
         $data['material'] = $this->Shop_drawing_model->getAllShopDrawing($project, $department);
         echo($this->load->view('shop_drawing/shop_drawing_project', $data, TRUE));
     }
+
+    public function AJAXdeleteShopDrawing(){
+        $material = $this->input->post('material');
+        $ret = $this->Shop_drawing_model->deleteMaterial($material);
+        $data['material'] = $this->Shop_drawing_model->getAllShopDrawing($ret['project'], $ret['department']);
+        echo($this->load->view('shop_drawing/shop_drawing_project', $data, TRUE));
+    }
 }

@@ -148,4 +148,14 @@ $(function () {
             $(".table").trigger("update");
         });
     });
+
+    $(document).on('click', ".deleteShopDrawing", function () {
+        var material = $(this).data('material');
+        if(confirm('Do you really want to Delete?')){
+            $.post(SHOPDRAWING + '/AJAXdeleteShopDrawing', {'material' : material}, function (result) {            
+                $("#shopDrawingTable").html(result);
+                $('.table').DataTable();
+            });
+        }        
+    });
 });

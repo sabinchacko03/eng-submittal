@@ -112,4 +112,11 @@ class Asbuilt_drawing extends CI_Controller {
         $data['material'] = $this->Asbuilt_drawing_model->getAllShopDrawing($project, $department);
         echo($this->load->view('asbuilt_drawing/shop_drawing_project', $data, TRUE));
     }
+
+    public function AJAXdeleteAsbuilt(){
+        $material = $this->input->post('material');
+        $ret = $this->Asbuilt_drawing_model->deleteMaterial($material);
+        $data['material'] = $this->Asbuilt_drawing_model->getAllShopDrawing($ret['project'], $ret['department']);
+        echo($this->load->view('asbuilt_drawing/shop_drawing_project', $data, TRUE));
+    }
 }

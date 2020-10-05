@@ -148,4 +148,14 @@ $(function () {
             $(".table").trigger("update");
         });
     });
+
+    $(document).on('click', ".deleteMaterial", function () {
+        var material = $(this).data('material');
+        if(confirm('Do you really want to Delete?')){
+            $.post(MATERIAL + '/AJAXdeleteMaterial', {'material' : material}, function (result) {            
+                $("#materialDetailsTable").html(result);
+                $('.table').DataTable();
+            });
+        }        
+    });
 });

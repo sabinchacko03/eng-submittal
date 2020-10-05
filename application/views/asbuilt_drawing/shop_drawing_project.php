@@ -42,7 +42,7 @@ foreach ($material->result_array() as $row) {
                             <td><?= $row['name']; ?></td>  
                             <td><?= $row['description']; ?></td>
                             <td><?= $row['status']; ?></td>
-                            <td><?= $row['planned_date']; ?></td> 
+                            <td><?= date('d-M-y', strtotime($row['planned_date'])) ?></td> 
                             <?php if ($this->edit_role || $this->delete_role) { ?>
                                 <td>
                                     <?php if ($this->edit_role && !$row['is_approved']) { ?>
@@ -51,8 +51,11 @@ foreach ($material->result_array() as $row) {
                                         </a>
                                         <a href='#' class="editAsbuiltDrawing" data-material="<?= $row['id'] ?>">
                                             <i class="fa fa-pencil-square-o" title="Edit" aria-hidden="true"></i>
-                                        </a>
+                                        </a>                                        
                                     <?php } ?>
+                                    <a href='#' class="deleteAsbuilt" data-material="<?= $row['id'] ?>">
+                                        <i class="fa fa-trash" title="Delete" aria-hidden="true"></i>
+                                    </a>
                                 </td>
                             <?php } ?>
                         </tr>

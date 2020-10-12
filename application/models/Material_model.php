@@ -75,6 +75,7 @@ class Material_model extends CI_Model {
         if($project != ''){
             $this->db->where('material.project', $project);
             $this->db->group_by('material.department');
+            $this->db->order_by('departments.order_id', 'asc');
         }else{
             $this->db->group_by('material.project');
         }                
@@ -146,6 +147,7 @@ class Material_model extends CI_Model {
         $this->db->select('material_status.name as status');
         $this->db->join('material_status', 'material_status.id = material_submittal_log.status');
         $this->db->where('material_submittal_log.material', $material);
+        $this->db->order_by('revision', 'asc');
         $res = $this->db->get('material_submittal_log');
         return $res;
     }

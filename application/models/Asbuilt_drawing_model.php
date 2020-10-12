@@ -75,6 +75,7 @@ class Asbuilt_drawing_model extends CI_Model {
         if($project != ''){
             $this->db->where('asbuilt_drawing.project', $project);
             $this->db->group_by('asbuilt_drawing.department');
+            $this->db->order_by('departments.order_id', 'asc');
         }else{
             $this->db->group_by('asbuilt_drawing.project');
         }                
@@ -146,6 +147,7 @@ class Asbuilt_drawing_model extends CI_Model {
         $this->db->select('material_status.name as status');
         $this->db->join('material_status', 'material_status.id = asbuilt_drawing_log.status');
         $this->db->where('asbuilt_drawing_log.shop_drawing', $material);
+        $this->db->order_by('revision', 'asc');
         $res = $this->db->get('asbuilt_drawing_log');
         return $res;
     }

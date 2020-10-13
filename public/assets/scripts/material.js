@@ -80,12 +80,13 @@ $(function () {
     $(document).on('submit', ".materialLogForm", function () {
         event.preventDefault();
         var data = $(this).serialize();
+        var info = $('.table').DataTable().page.info();
         $.post(MATERIAL + '/AJAXAddMaterialLog', data, function (result) {
             $(".materialLogForm").trigger("reset");
             $(".ui-theme-settings").toggleClass("settings-open", 1000);
             $("#materialDetailsTable").html(result);
-            $('.table').DataTable();
-            $(".table").trigger("update");
+            var table = $('.table').DataTable();
+            table.page(info.page).draw('page');
         });
     });
     
@@ -112,12 +113,13 @@ $(function () {
     $(document).on('submit', ".materialLogUpdateForm", function(){
         event.preventDefault();
         var data = $(this).serialize();
+        var info = $('.table').DataTable().page.info();
         $.post(MATERIAL + '/AJAXupdateMaterialLog', data, function (result) {
             $(".materialLogForm").trigger("reset");
             $(".ui-theme-settings").toggleClass("settings-open", 1000);
             $("#materialDetailsTable").html(result);
-            $('.table').DataTable();
-            $(".table").trigger("update");
+            var table = $('.table').DataTable();
+            table.page(info.page).draw('page');
         });
     });
     

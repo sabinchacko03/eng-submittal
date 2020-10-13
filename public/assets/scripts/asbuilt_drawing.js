@@ -80,12 +80,13 @@ $(function () {
     $(document).on('submit', ".asbuiltDrawingLogForm", function () {
         event.preventDefault();
         var data = $(this).serialize();
+        var info = $('.table').DataTable().page.info();
         $.post(ASBUILT + '/AJAXAddShopDrawingLog', data, function (result) {
             $(".materialLogForm").trigger("reset");
             $(".ui-theme-settings").toggleClass("settings-open", 1000);
             $("#asbuiltDrawingTable").html(result);
-            $('.table').DataTable();
-            $(".table").trigger("update");
+            var table = $('.table').DataTable();
+            table.page(info.page).draw('page');
         });
     });
     
@@ -112,12 +113,13 @@ $(function () {
     $(document).on('submit', ".asbuiltDrawingLogUpdateForm", function(){
         event.preventDefault();
         var data = $(this).serialize();
+        var info = $('.table').DataTable().page.info();
         $.post(ASBUILT + '/AJAXupdateShopDrawingLog', data, function (result) {
             $(".asbuiltDrawingLogUpdateForm").trigger("reset");
             $(".ui-theme-settings").toggleClass("settings-open", 1000);
             $("#asbuiltDrawingTable").html(result);
-            $('.table').DataTable();
-            $(".table").trigger("update");
+            var table = $('.table').DataTable();
+            table.page(info.page).draw('page');
         });
     });
     

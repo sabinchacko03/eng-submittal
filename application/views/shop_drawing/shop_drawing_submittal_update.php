@@ -66,11 +66,11 @@
                     </div>
                     <div class="col-md-12">                    
                         <label for="project" class="col-form-label">Document 1 <small>(Google Drive Link)</small></label>
-                        <input type="text" name="doc1" id="doc1" class="form-control" value="<?= $row->doc1 ?>" required/>
+                        <input type="text" name="doc1" id="doc1" class="form-control" value="<?= $row->doc1 ?>"/>
                     </div> 
                     <div class="col-md-12">                    
                         <label for="project" class="col-form-label">Document 2 <small>(Google Drive Link)</small></label>
-                        <input type="text" name="doc2" id="doc2" class="form-control" value="<?= $row->doc2 ?>"  required/>
+                        <input type="text" name="doc2" id="doc2" class="form-control" value="<?= $row->doc2 ?>" />
                     </div> 
                     <div class="col-md-12">                    
                         <label class="col-form-label">Status</label>

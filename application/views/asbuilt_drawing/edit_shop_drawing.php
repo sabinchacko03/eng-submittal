@@ -25,7 +25,7 @@
                     </div>
                     <div class="col-md-12">                    
                         <label for="name" class="col-form-label">Submittal No.</label>
-                        <input type="text" class="form-control" readonly value="<?= $row->name ?>" />    
+                        <input type="text" class="form-control"name="name" value="<?= $row->name ?>" />    
                         <span style="color: red;" id="material_msg"></span>                       
                     </div>   
                     <div class="col-md-12">                    
